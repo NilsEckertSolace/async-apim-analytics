@@ -21,7 +21,7 @@ export async function mochaGlobalSetup() {
   }
 
   // start analytics server
-  await request(server).get('/').expect(200).catch((error) => {
+  await request(server).get('/').expect(200).catch(() => {
     logger.log(scriptName, 'Start of API Management Analytics Server failed');
     process.exit(1);
   });
