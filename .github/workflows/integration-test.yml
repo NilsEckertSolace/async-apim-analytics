@@ -48,6 +48,7 @@ jobs:
 
       - name: Build server
         run: |
+          npm i ts-node -g
           npm ci
           npm run build
 
