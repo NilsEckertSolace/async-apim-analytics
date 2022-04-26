@@ -9,8 +9,6 @@ import { logger } from '../lib/test-helper';
 const scriptName: string = path.basename(__filename);
 const scriptDir: string = path.dirname(__filename);
 
-const envFile = `${scriptDir}/../.env`;
-
 const resourcesDirectory = `${scriptDir}/../resources`;
 const connectorServerDirectory = `${resourcesDirectory}/apim-connector`;
 
@@ -40,7 +38,7 @@ export async function mochaGlobalSetup() {
   logger.log(scriptName, 'Setup test environment ...');
 
   logger.log(scriptName, 'Create docker containers for API Management Connector ...');
-  if (s.exec(`docker-compose --env-file ${envFile} -p ${dockerProjectName} -f "${dockerCompositeFile}" up -d`).code != 0) {
+  if (s.exec(`docker-compose -p ${dockerProjectName} -f "${dockerCompositeFile}" up -d`).code != 0) {
     logger.log(scriptName, 'ERROR: failed to create docker containers');
     process.exit(1);
   }
@@ -82,7 +80,7 @@ export async function mochaGlobalTeardown() {
   logger.log(scriptName, 'Resources for API Management Connector deleted');
 
   logger.log(scriptName, 'Delete docker containers for API Management Connector ...');
-  if (s.exec(`docker-compose --env-file ${envFile} -p ${dockerProjectName} -f "${dockerCompositeFile}" down --volumes`).code != 0) {
+  if (s.exec(`docker-compose -p ${dockerProjectName} -f "${dockerCompositeFile}" down --volumes`).code != 0) {
     logger.log(scriptName, 'ERROR: failed to delete docker containers');
     process.exit(1);
   }
