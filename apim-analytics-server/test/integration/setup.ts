@@ -1,7 +1,7 @@
 import path from 'path';
 import s from 'shelljs';
 import request from 'supertest';
-import server from '../../src/server';
+import server from '../../dist/server';
 import { logger } from '../lib/test-helper';
 
 const scriptName: string = path.basename(__filename);

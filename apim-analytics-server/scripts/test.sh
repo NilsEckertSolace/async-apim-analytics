@@ -8,8 +8,8 @@ scriptDir=$(cd $(dirname "$0") && pwd);
 rootDir="$scriptDir/.."
 
 export DOTENV_CONFIG_PATH="$rootDir/test/.env"
-export TS_NODE=true
-export NODE_OPTIONS="-r ts-node/register"
+#export TS_NODE=true
+#export NODE_OPTIONS="-r ts-node/register"
 
 ############################################################################################################################
 # Run

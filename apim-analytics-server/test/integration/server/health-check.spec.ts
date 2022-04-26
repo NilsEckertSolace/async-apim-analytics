@@ -3,8 +3,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import path from 'path';
 import * as fetch from 'node-fetch';
-import serverConfig from '../../../src/common/config';
-import server from '../../../src/server';
+import serverConfig from '../../../dist/common/config';
 
 const scriptName: string = path.basename(__filename);
 
