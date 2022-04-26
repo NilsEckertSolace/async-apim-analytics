@@ -9,9 +9,11 @@ scriptName=$(basename $(test -L "$0" && readlink "$0" || echo "$0"));
 logsDir="$scriptDir/../../tmp/logs/$(node --version)"
 scriptLogFile="$logsDir/npm.run.test-integration.log"
 
+export AMAX_SERVER_PORT=8081
 export AMAX_SERVER_LOGGER_LOG_LEVEL=debug
-export AMAX_SERVER_LOGGER_LOG_FILE="$logsDir/server.log"
+export AMAX_SERVER_LOGGER_LOG_FILE="$logsDir/server.test-integration.log"
 
+export AMAX_SERVER_CONNECTOR_PORT=8080
 export AMAX_SERVER_CONNECTOR_USERNAME=admin
 export AMAX_SERVER_CONNECTOR_PASSWORD=Solace123!
 

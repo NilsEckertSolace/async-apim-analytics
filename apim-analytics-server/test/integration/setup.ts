@@ -14,7 +14,7 @@ export async function mochaGlobalSetup() {
   // create and start local connector
   const code = s.exec(`bash ${connectorServerDirectory}/setup.sh 2>&1`, { silent: false }).code
   if (code != 0) {
-    logger.log(scriptName, 'Setup of API Management Connector failed');
+    throw new Error('Setup of API Management Connector failed');
   }
 
   // start analytics server
@@ -28,7 +28,7 @@ export async function mochaGlobalTeardown() {
   // stop and remove local connector 
   const code = s.exec(`bash ${connectorServerDirectory}/teardown.sh 2>&1`, { silent: false }).code
   if (code != 0) {
-    logger.log(scriptName, 'Teardown of API Management Connector failed');
+    throw new Error('Teardown of API Management Connector failed');
   }
 
   logger.log(scriptName, 'Teardown finished');

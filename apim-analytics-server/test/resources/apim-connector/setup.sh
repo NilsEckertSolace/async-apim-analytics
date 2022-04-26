@@ -40,6 +40,11 @@ function waitUntilServerIsAvailable {
 }
 
 ############################################################################################################################
+# Prepare
+
+touch "$envFile" # docker compose will fail, if the .env file does not exist
+
+############################################################################################################################
 # Run
 
 echo ">>> Start containers for API Management Connector ..."
@@ -47,7 +52,8 @@ docker-compose --env-file "$envFile" -p $dockerProjectName -f "$dockerComposeFil
 if [[ $? != 0 ]]; then echo ">>> ERROR: docker compose up failed"; exit 1; fi
 echo ">>> Success"
 
-waitUntilServerIsAvailable "http://localhost:$(getenv AMAX_SERVER_CONNECTOR_PORT)"
+serverPort=$(getenv AMAX_SERVER_CONNECTOR_PORT)
+waitUntilServerIsAvailable "http://localhost:${serverPort:-8080}"
 
 echo ">>> Create resources for API Management Connector ..."
 node -r ts-node/register "$toolsDir/connector.ts" create "$resourcesDir/test-organization.json"

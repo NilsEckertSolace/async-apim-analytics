@@ -7,7 +7,7 @@ const scriptName: string = path.basename(__filename);
 
 describe(scriptName, function () {
 
-  const serverPort = process.env.AMAX_SERVER_PORT;
+  const serverPort = process.env.AMAX_SERVER_PORT ?? '8080';
   const aboutURI = `http://localhost:${serverPort}/about.json`;
 
   it("should return 'about' information", async function () {
